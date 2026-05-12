@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakina Hijama — La Parenthèse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF6F1;
+            --warm-white: #FDF9F5;
+            --blush: #E8C9B8;
+            --terracotta: #C4836A;
+            --deep: #3A2A22;
+            --muted: #8A7060;
+            --sage: #B5C0A8;
+            --light-sage: #E8EDE3;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--cream);
+            color: var(--deep);
+            font-family: 'Jost', sans-serif;
+            font-weight: 300;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: var(--warm-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 24px 80px;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            border: 1px solid var(--blush);
+            padding: 7px 18px;
+            border-radius: 50px;
+            margin-bottom: 32px;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(48px, 10vw, 86px);
+            font-weight: 300;
+            line-height: 1.1;
+            color: var(--deep);
+            animation: fadeUp 0.8s 0.15s ease both;
+        }
+
+        .hero h1 em { font-style: italic; color: var(--terracotta); }
+
+        .hero-sub {
+            margin-top: 28px;
+            font-size: clamp(15px, 3.5vw, 18px);
+            color: var(--muted);
+            max-width: 480px;
+            animation: fadeUp 0.8s 0.3s ease both;
+        }
+
+        .hero-ctas {
+            margin-top: 44px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            animation: fadeUp 0.8s 0.45s ease both;
+        }
+
+        .btn-primary {
+            background: var(--terracotta);
+            color: #fff;
+            padding: 15px 32px;
+            border-radius: 50px;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(196,131,106,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--deep);
+            padding: 15px 32px;
+            border-radius: 50px;
+            border: 1.5px solid var(--blush);
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        /* JOURNÉE SECTION */
+        .journee { padding: 80px 24px; background: var(--warm-white); }
+
+        .section-label {
+            font-size: 10px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(32px, 7vw, 52px);
+            font-weight: 300;
+            text-align: center;
+            line-height: 1.15;
+            margin-bottom: 56px;
+        }
+
+        .timeline { max-width: 560px; margin: 0 auto; }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 24px;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 39px; top: 32px; bottom: 0;
+            width: 1px; background: var(--blush);
+        }
+        .timeline-item:last-child::before { display: none; }
+
+        .time-badge {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--terracotta);
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 33px; top: 4px;
+            width: 13px; height: 13px;
+            border-radius: 50%;
+            background: var(--blush);
+            border: 2px solid var(--terracotta);
+            z-index: 2;
+        }
+
+        .timeline-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; margin-bottom: 8px; }
+        .timeline-content p { font-size: 14px; color: var(--muted); }
+
+        /* PRIX CARD */
+        .prix { padding: 80px 24px; background: var(--cream); text-align: center; }
+
+        .prix-card {
+            max-width: 420px;
+            margin: 0 auto;
+            background: white;
+            border: 1px solid var(--blush);
+            border-radius: 24px;
+            padding: 40px 28px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+
+        .prix-amount {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 56px;
+            color: var(--deep);
+            margin: 10px 0;
+        }
+
+        .prix-list {
+            list-style: none;
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .prix-list li {
+            font-size: 14px;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .prix-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0; color: var(--terracotta);
+        }
+
+        footer { padding: 40px; background: var(--deep); color: white; text-align: center; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            .timeline-item { grid-template-columns: 60px 1fr; gap: 15px; }
+            .timeline-item::before { left: 30px; }
+            .timeline-dot { left: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <img src="logo.png.PNG" alt="Sakina Hijama" style="width:100px; height:100px; border-radius:50%; margin-bottom:20px;">
+    <div class="badge">Post-partum · Soin · Bien-être</div>
+    <h1>La<br><em>Parenthèse</em></h1>
+    <p class="hero-sub">Une demi-journée entière dédiée à toi, nouvelle maman. Tu te reposes. Je m'occupe du reste.</p>
+    <div class="hero-ctas">
+        <a href="https://calendly.com/oueslati-nadia/la-parenthese" class="btn-primary" target="_blank">Réserver ma journée</a>
+        <a href="https://wa.me/221771029848" class="btn-secondary" target="_blank">WhatsApp</a>
+    </div>
+</section>
+
+<section class="journee reveal">
+    <p class="section-label">Le déroulé</p>
+    <h2 class="section-title">Ta journée,<br><em>de A à Z</em></h2>
+    
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="time-badge">9h00</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h3>🚗 Transport Inclus</h3>
+                <p>On vient vous chercher, vous et bébé, pour une arrivée sans aucun stress logistique.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="time-badge">Matin</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h3>💆‍♀️ Massage & Hijama</h3>
+                <p>Un massage complet du corps suivi d'une séance de Hijama détox pour purifier l'organisme.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="time-badge">Midi</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h3>🥗 Repas Healthy</h3>
+                <p>Une collation et un déjeuner équilibré conçus pour la récupération post-partum.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="time-badge">13h30</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h3>🏡 Retour Serein</h3>
+                <p>Vous rentrez chez vous reposée et rechargée, avec des conseils personnalisés pour bébé.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="prix reveal">
+    <p class="section-label">L'investissement</p>
+    <h2 class="section-title">Tout est<br><em>compris</em></h2>
+    <div class="prix-card">
+        <p style="text-transform: uppercase; letter-spacing: 1px; font-size: 12px;">Offre Complète</p>
+        <div class="prix-amount">70 000 <span style="font-size: 20px;">FCFA</span></div>
+        
+        <ul class="prix-list">
+            <li>Transport privé aller-retour</li>
+            <li>Massage corps complet & Bain de pieds</li>
+            <li>Séance Hijama détox certifiée</li>
+            <li>Collation & Repas du midi sains</li>
+            <li>Massage bébé & Conseils allaitement</li>
+            <li>Option repos : je garde bébé pendant votre sieste</li>
+        </ul>
+
+        <a href="https://calendly.com/oueslati-nadia/la-parenthese" class="btn-primary" target="_blank" style="display: block; width: 100%; text-align: center;">Réserver ma Parenthèse</a>
+        
+        <p style="margin-top: 20px; font-size: 13px;">
+            Une question ? <a href="https://wa.me/221771029848" style="color:var(--terracotta); text-decoration:none; font-weight:500;">Contactez-moi</a>
+        </p>
+    </div>
+</section>
+
+<footer>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 10px;">Sakina Hijama</div>
+    <p style="font-size: 12px; opacity: 0.6;">Soin · Post-partum · Bien-être | Dakar, Sénégal</p>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
